@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RetinaSense · Retinal biomarker screening: Normal · Glaucoma · Diabetes · High BP</title>
+<link rel="stylesheet" href="/static/css/site.css">
+</head><body>
+<div id="bar"></div>
+<nav><b>◉ RetinaSense</b><a href="#analyze">Analyse</a><a href="#models">Segmentation</a><a href="#avdice">Artery vs Vein Dice</a><a href="#compare">Normal vs Disease</a><a href="#cases">Full outputs</a><a href="#trust">Method &amp; trust</a></nav>
+
+<section class="hero">
+ <div><span class="pill">Retinal vessel biomarkers → disease screening</span>
+  <h1>Read the <em>hidden health</em> of every retina.</h1>
+  <p class="sub">Upload fundus photos. The system traces every vessel, separates arteries from veins, measures six biomarkers and predicts whether the pattern is <b>Normal</b>, <b>Glaucoma</b>, <b>Diabetes</b> or <b>High blood pressure</b> — with every image getting its own report, its own graphs and a plain-language conclusion you can verify.</p>
+  <a class="cta" href="#analyze">Analyse fundus images →</a>
+  <div class="stats"><div class="stat"><b data-n="4" class="cnt">0</b><span>Screening outcomes</span></div><div class="stat"><b data-n="6" class="cnt">0</b><span>Vascular biomarkers</span></div><div class="stat"><b data-n="15" class="cnt">0</b><span>Chart types per image</span></div><div class="stat"><b data-n="9" class="cnt">0</b><span>Quality checks per image</span></div></div></div>
+ <svg class="eye" viewBox="0 0 400 400"><circle cx="200" cy="200" r="185" fill="#1a0f1c" stroke="#ffffff25"/><circle cx="200" cy="200" r="170" fill="#7c5cff12"/>
+  <g stroke-width="3.4"><path d="M150 200C190 180 230 120 300 90" stroke="#fb7185"/><path d="M150 200C200 215 250 270 310 300" stroke="#60a5fa"/><path d="M150 200C185 150 200 90 230 45" stroke="#fb7185"/><path d="M150 200C175 250 190 300 220 355" stroke="#60a5fa"/><path d="M150 200C210 195 290 200 360 190" stroke="#fb7185"/><path d="M150 200C120 150 90 120 60 100" stroke="#60a5fa"/><path d="M150 200C115 250 90 290 70 310" stroke="#fb7185"/></g>
+  <g stroke-width="1.8" opacity=".85"><path d="M260 112C270 150 285 165 330 170" stroke="#fb7185"/><path d="M265 262C290 240 320 235 350 245" stroke="#60a5fa"/><path d="M215 70C250 80 275 60 300 50" stroke="#60a5fa"/><path d="M225 330C260 330 290 345 320 340" stroke="#fb7185"/></g>
+  <circle class="disc" cx="150" cy="200" r="22" fill="#fbbf24" opacity=".85"/></svg>
+</section>
+
+<section id="analyze"><h2 class="rv">Analyse <em>your images</em></h2><p class="sub rv">Choose one or many fundus photos. Each image is analysed on its own and gets a separate report: prediction, output images, biomarkers, graphs and a trust &amp; quality sheet. Everything is computed from the pixels of that image — nothing is cached or reused between images.</p>
+ <div class="card rv"><div id="drop" class="drop" onclick="file.click()"><b>Drop fundus images here</b> or click to choose (multiple allowed)<div style="color:var(--mut);font-size:13px">png · jpg · tif · bmp</div><div class="thumbs" id="thumbs"></div></div>
+  <input id="file" type="file" accept="image/*" multiple hidden>
+  <div style="margin-top:16px;color:var(--mut);font-size:13px">…or tick sample images:</div><div class="chips" id="samples" style="margin-top:8px"></div>
+  <div class="row"><button id="go" class="go" disabled>Analyse selected images</button><label style="font-size:13px;color:var(--mut)"><input type="checkbox" id="fc"> force classical engine</label><span id="badge" class="badge">checking engine…</span></div>
+  <div id="msg"></div></div>
+ <div id="tray" class="tray"></div><div id="reports"></div>
+ <div id="cmpsec" hidden><h2 class="rv" style="margin-top:50px">Your images <em>compared</em></h2><p class="sub rv">All images you analysed in this session, side by side. The charts change with the images you upload.</p>
+  <div class="grid2"><div class="card"><h3>Radar · biomarkers per image</h3><p class="why">Green ring = reference range. Each image draws its own shape.</p><div id="cmprad"></div></div>
+  <div class="card"><h3>Lollipop · match % per condition</h3><p class="why">One row per image; one dot per condition.</p><div id="cmplol"></div><div class="insight" id="cmpins"></div></div></div>
+  <div class="card" style="margin-top:18px"><h3>Summary table</h3><div class="ch" style="overflow-x:auto"><table class="ftab" id="cmptab"></table></div></div></div>
+</section>
+
+<section id="models"><h2 class="rv">Segmentation <em>benchmark</em></h2><p class="sub rv">Dice, sensitivity and specificity of the three networks on the vessel-segmentation task (saved evaluation results).</p>
+ <div class="grid2"><div class="card rv"><h3>Radar · three networks</h3><p class="why">Axes start at 0.60 so differences are visible; hover for the true value.</p><div id="mrad"></div></div>
+ <div class="card rv"><h3>Lollipop · every metric</h3><p class="why">Stem length = score (0 → 1).</p><div id="mlol"></div><div class="insight" id="minsight"></div></div></div></section>
+
+<section id="avdice"><h2 class="rv">Artery Dice vs Vein Dice · <em>per image</em></h2><p class="sub rv">How well each network segments arteries and veins on every test image — Attention U-Net and UNet++ + SCSE. Click any dot to inspect that image; each chart answers a different question.</p>
+ <div id="avwarn"></div><div class="stat2 rv" id="avstats"></div>
+ <div class="grid2"><div class="card rv"><h3>Attention U-Net · artery vs vein</h3><p class="why">Dots above the dashed line: vein Dice is higher than artery Dice.</p><div id="sc1"></div></div>
+ <div class="card rv"><h3>UNet++ + SCSE · artery vs vein</h3><p class="why">Same axes — compare how the cloud shifts.</p><div id="sc2"></div></div></div>
+ <div class="card rv" style="margin-top:18px"><h3>Inspect one image</h3><p class="why">Pick an image (or click a dot above).</p><select id="avsel"></select><div id="avdet"></div></div>
+ <div class="card rv" style="margin-top:18px"><h3>All 20 images · Dice trend</h3><p class="why">Four animated lines across the test set.</p><div id="avline"></div><div class="insight" id="avinsight1"></div></div>
+ <div class="grid2" style="margin-top:18px"><div class="card rv"><h3>Dumbbell · Attention U-Net</h3><p class="why">Each row = one image, sorted by artery–vein gap.</p><div id="db1"></div></div><div class="card rv"><h3>Dumbbell · UNet++ + SCSE</h3><p class="why">Short bar = balanced artery/vein performance.</p><div id="db2"></div></div></div>
+ <div class="grid2" style="margin-top:18px"><div class="card rv"><h3>Does SCSE help arteries?</h3><p class="why">UNet++ + SCSE minus Attention U-Net, artery Dice per image.</p><div id="dv1"></div></div><div class="card rv"><h3>Does SCSE help veins?</h3><p class="why">Same, for vein Dice.</p><div id="dv2"></div><div class="insight" id="avinsight2"></div></div></div>
+</section>
+
+<section id="compare"><h2 class="rv">Normal vs disease <em>biomarkers</em></h2><p class="sub rv">Group averages of the six biomarkers for normal and disease retinas, and the percentage change between them.</p>
+ <div class="grid2"><div class="card rv"><h3>Radar · normalised</h3><p class="why">Each axis scaled to the larger of the two groups.</p><div id="crad"></div></div><div class="card rv"><h3>% change in disease vs normal</h3><p class="why">Red = lower in disease, green = higher.</p><div id="cdiv"></div><div class="insight" id="cins"></div></div></div></section>
+
+<section id="cases"><h2 class="rv">Complete output · <em>UNet++ + SCSE</em></h2><p class="sub rv">Saved results of the trained network on one normal and one disease retina: original → probability map → mask → artery/vein → biomarkers.</p>
+ <div class="card rv"><div class="tabs"><button class="on" data-k="normal">Normal retina</button><button data-k="disease">Disease retina</button></div>
+  <img class="wipe" id="caseimg" onclick="zoom(this.src)" alt="complete output"><div id="casebm" style="margin-top:18px"></div></div></section>
+
+<section id="trust"><h2 class="rv">Method &amp; <em>trust</em></h2><p class="sub rv">Exactly how a prediction is produced, what the page will and will not claim, and how to validate it on your own labelled images.</p>
+ <div class="grid2"><div class="card rv"><h3>What each condition looks like in the biomarkers</h3><table class="ftab" id="sigtab"></table></div>
+ <div class="card rv"><h3>Reference ranges used</h3><table class="ftab" id="rngtab"></table></div></div>
+ <div class="grid2" style="margin-top:18px"><div class="card rv"><h3>How the prediction is computed</h3><ul class="note"><li>Six biomarkers are measured from the vessel mask and artery/vein masks of the uploaded image.</li><li>Each biomarker's distance from its reference range is expressed in range-widths (0 = inside the range).</li><li>Every condition collects weighted evidence only from deviations in its own direction; Normal wins when everything is inside the ranges.</li><li>A softmax turns the scores into the match % shown. It is a <b>pattern-match score</b>, not a calibrated probability.</li><li>If the artery/vein split came from the colour heuristic, AVR-derived evidence is down-weighted, and a warning is printed.</li></ul></div>
+ <div class="card rv"><h3>Limits you should state when presenting</h3><ul class="note"><li>Decision-support only — not a diagnosis. Glaucoma is normally assessed from the optic disc and eye pressure; here it is inferred from vessel rarefaction and narrowing, which is indirect.</li><li>Pixel-based widths depend on image resolution; compare images of similar size.</li><li>Segmentation Dice is about 0.79 and artery/vein accuracy about 66 % in the saved evaluation, so single-image biomarker values carry measurement error.</li><li>Run <code>python validate_screening.py labelled/</code> on images with known diagnoses to get a real accuracy and confusion matrix before quoting any accuracy.</li></ul></div></div></section>
+
+<footer>RetinaSense · research decision-support tool, not a medical device.</footer>
+<div id="zoom" onclick="this.classList.remove('on')"><img alt=""></div>
+<script src="/static/js/charts.js"></script><script src="/static/js/site.js"></script>
+</body></html>

@@ -1,0 +1,79 @@
+{
+ "models": {
+  "metrics": [
+   "Dice",
+   "Sensitivity",
+   "Specificity"
+  ],
+  "UNet++": [
+   0.7908,
+   0.8447,
+   0.9738
+  ],
+  "Attention U-Net": [
+   0.7779,
+   0.8616,
+   0.9675
+  ],
+  "UNet++ + SCSE": [
+   0.7897,
+   0.8299,
+   0.9749
+  ]
+ },
+ "artery_vein": {
+  "mean_accuracy": 65.8,
+  "best_image": 79.3,
+  "final_train": 80.7
+ },
+ "group": {
+  "biomarkers": [
+   "Density %",
+   "Vessel width",
+   "Tortuosity",
+   "AV ratio",
+   "Artery width",
+   "Vein width"
+  ],
+  "Normal": [
+   9.8,
+   4.61,
+   1.04,
+   0.68,
+   3.91,
+   5.74
+  ],
+  "Disease": [
+   7.2,
+   3.87,
+   1.12,
+   0.59,
+   3.14,
+   5.31
+  ]
+ },
+ "cases": {
+  "normal": {
+   "vessel_density_%": 7.974,
+   "mean_vessel_width_px": 4.046,
+   "tortuosity_index": 1.395,
+   "artery_vein_ratio": 1.011,
+   "mean_artery_width_px": 2.402,
+   "mean_vein_width_px": 2.377,
+   "mask_coverage_%": 8.0,
+   "artery_pixels": 10263,
+   "vein_pixels": 8008
+  },
+  "disease": {
+   "vessel_density_%": 11.561,
+   "mean_vessel_width_px": 3.462,
+   "tortuosity_index": 2.236,
+   "artery_vein_ratio": 1.016,
+   "mean_artery_width_px": 2.369,
+   "mean_vein_width_px": 2.331,
+   "mask_coverage_%": 11.6,
+   "artery_pixels": 9509,
+   "vein_pixels": 10137
+  }
+ }
+}

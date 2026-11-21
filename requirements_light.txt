@@ -1,0 +1,9 @@
+# Everything the website + scripts need WITHOUT PyTorch (classical fallback + saved  results)
+opencv-python>=4.8
+numpy
+scipy
+scikit-image
+networkx
+matplotlib
+Pillow
+flask>=3.0

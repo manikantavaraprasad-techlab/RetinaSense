@@ -1,0 +1,87 @@
+{
+  "image": "eye-1636542_1280",
+  "original_size_hw": [
+    570,
+    860
+  ],
+  "engine": "classical",
+  "engine_label": "Classical fallback (no trained weights) \u2014 NOT the trained networks",
+  "segmentation_model": "Classical ridge filter (Sato)",
+  "biomarkers": [
+    {
+      "key": "vessel_density",
+      "label": "Vessel Density",
+      "unit": "%",
+      "value": 4.5544,
+      "ref_lo": 7.0,
+      "ref_hi": 13.0,
+      "status": "OUTSIDE"
+    },
+    {
+      "key": "mean_vessel_width",
+      "label": "Mean Vessel Width",
+      "unit": "px",
+      "value": 3.5778,
+      "ref_lo": 2.5,
+      "ref_hi": 7.0,
+      "status": "within"
+    },
+    {
+      "key": "vessel_tortuosity",
+      "label": "Tortuosity Index",
+      "unit": "ratio",
+      "value": 1.0862,
+      "ref_lo": 1.0,
+      "ref_hi": 1.15,
+      "status": "within"
+    },
+    {
+      "key": "avr",
+      "label": "Artery/Vein Ratio",
+      "unit": "ratio",
+      "value": 1.0112,
+      "ref_lo": 0.67,
+      "ref_hi": 0.75,
+      "status": "OUTSIDE"
+    },
+    {
+      "key": "mean_artery_width",
+      "label": "Mean Artery Width",
+      "unit": "px",
+      "value": 2.3861,
+      "ref_lo": 2.0,
+      "ref_hi": 6.0,
+      "status": "within"
+    },
+    {
+      "key": "mean_vein_width",
+      "label": "Mean Vein Width",
+      "unit": "px",
+      "value": 2.3597,
+      "ref_lo": 3.0,
+      "ref_hi": 9.0,
+      "status": "OUTSIDE"
+    }
+  ],
+  "graph": {
+    "nodes": 181,
+    "segments": 222
+  },
+  "confidence": {
+    "seg_mean_vessel_prob": 0.8205661773681641,
+    "seg_uncertain_pct": 40.657855211775306,
+    "av_n_segments": 222,
+    "av_mean_score": 0.2681312001906,
+    "av_pct_score_ge_0.5": 26.126126126126124,
+    "av_pct_score_ge_0.8": 20.27027027027027,
+    "av_artery_segments": 91,
+    "av_vein_segments": 131
+  },
+  "extra": {
+    "mask_coverage_%": 4.5543670654296875,
+    "fov_coverage_%": 40.924072265625,
+    "artery_pixels": 3148,
+    "vein_pixels": 3828
+  },
+  "av_score_kind": "heuristic margin (not a probability)"
+}

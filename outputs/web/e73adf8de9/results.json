@@ -1,0 +1,87 @@
+{
+  "image": "human-optic-disc-retina-and-blood-vessels",
+  "original_size_hw": [
+    612,
+    612
+  ],
+  "engine": "classical",
+  "engine_label": "Classical fallback (no trained weights) \u2014 NOT the trained networks",
+  "segmentation_model": "Classical ridge filter (Sato)",
+  "biomarkers": [
+    {
+      "key": "vessel_density",
+      "label": "Vessel Density",
+      "unit": "%",
+      "value": 5.901,
+      "ref_lo": 7.0,
+      "ref_hi": 13.0,
+      "status": "OUTSIDE"
+    },
+    {
+      "key": "mean_vessel_width",
+      "label": "Mean Vessel Width",
+      "unit": "px",
+      "value": 3.8435,
+      "ref_lo": 2.5,
+      "ref_hi": 7.0,
+      "status": "within"
+    },
+    {
+      "key": "vessel_tortuosity",
+      "label": "Tortuosity Index",
+      "unit": "ratio",
+      "value": 1.0845,
+      "ref_lo": 1.0,
+      "ref_hi": 1.15,
+      "status": "within"
+    },
+    {
+      "key": "avr",
+      "label": "Artery/Vein Ratio",
+      "unit": "ratio",
+      "value": 1.0053,
+      "ref_lo": 0.67,
+      "ref_hi": 0.75,
+      "status": "OUTSIDE"
+    },
+    {
+      "key": "mean_artery_width",
+      "label": "Mean Artery Width",
+      "unit": "px",
+      "value": 2.4051,
+      "ref_lo": 2.0,
+      "ref_hi": 6.0,
+      "status": "within"
+    },
+    {
+      "key": "mean_vein_width",
+      "label": "Mean Vein Width",
+      "unit": "px",
+      "value": 2.3924,
+      "ref_lo": 3.0,
+      "ref_hi": 9.0,
+      "status": "OUTSIDE"
+    }
+  ],
+  "graph": {
+    "nodes": 114,
+    "segments": 137
+  },
+  "confidence": {
+    "seg_mean_vessel_prob": 0.8419637680053711,
+    "seg_uncertain_pct": 37.69983136593592,
+    "av_n_segments": 137,
+    "av_mean_score": 0.2621137017475944,
+    "av_pct_score_ge_0.5": 25.547445255474454,
+    "av_pct_score_ge_0.8": 19.708029197080293,
+    "av_artery_segments": 56,
+    "av_vein_segments": 81
+  },
+  "extra": {
+    "mask_coverage_%": 5.9009552001953125,
+    "fov_coverage_%": 55.200958251953125,
+    "artery_pixels": 4278,
+    "vein_pixels": 3496
+  },
+  "av_score_kind": "heuristic margin (not a probability)"
+}
