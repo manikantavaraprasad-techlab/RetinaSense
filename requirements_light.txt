@@ -7,3 +7,4 @@ networkx
 matplotlib
 Pillow
 flask>=3.0
+gunicorn
